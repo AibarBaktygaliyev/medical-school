@@ -1,7 +1,7 @@
 var merge = require('webpack-merge')
 
 module.exports = {
-    publicPath: '/medical-school/',
+    publicPath: process.env.NODE_ENV === 'production' ? '/medical-school/' : '',
     pwa: {
         workboxOptions: {
             skipWaiting: true

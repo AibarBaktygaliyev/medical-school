@@ -1,0 +1,75 @@
+[33mcommit 5f2a30090e89bce7c49f437ffaeac2258a06af57[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: aibar.baktygaliyev <aibar.baktygaliyev@nu.edu.kz>
+Date:   Fri Dec 24 14:54:33 2021 +0600
+
+    [UPDATED] 24.12.2021
+
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex 403adbc..4a2e501 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -1,6 +1,5 @@[m
+ .DS_Store[m
+ node_modules[m
+[31m-/dist[m
+ [m
+ [m
+ # local env files[m
+[1mdiff --git a/deploy.sh b/deploy.sh[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d97a0c4[m
+[1m--- /dev/null[m
+[1m+++ b/deploy.sh[m
+[36m@@ -0,0 +1,14 @@[m
+[32m+[m[32m#!/usr/bin/env sh[m
+[32m+[m[32m# abort on errors[m
+[32m+[m[32mset -e[m
+[32m+[m[32m# build[m
+[32m+[m[32mnpm run build[m
+[32m+[m[32m# navigate into the build output directory[m
+[32m+[m[32mcd dist[m
+[32m+[m[32m# if you are deploying to a custom domain[m
+[32m+[m[32m# echo 'www.example.com' > CNAME[m
+[32m+[m[32mgit init[m
+[32m+[m[32mgit add -A[m
+[32m+[m[32mgit commit -m 'deploy'[m
+[32m+[m[32mgit push -f git@github.com:zerobfn/medical-school.git master:gh-pages[m
+[32m+[m[32mcd -[m
+\ No newline at end of file[m
+[1mdiff --git a/dist b/dist[m
+[1mnew file mode 160000[m
+[1mindex 0000000..03e54ee[m
+[1m--- /dev/null[m
+[1m+++ b/dist[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32mSubproject commit 03e54ee1fb79066123b9b31559ee4b29e7aad09b[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex 70f21ce..6001171 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -6,7 +6,7 @@[m
+     "serve": "vue-cli-service serve",[m
+     "build": "vue-cli-service build",[m
+     "lint": "vue-cli-service lint",[m
+[31m-    "deploy": "node scripts/gh-pages-deploy.js"[m
+[32m+[m[32m    "deploy": "sh deploy.sh"[m
+   },[m
+   "dependencies": {[m
+     "@popperjs/core": "^2.11.0",[m
+[1mdiff --git a/gh-pages-deploy.js b/scripts/gh-pages-deploy.js[m
+[1msimilarity index 100%[m
+[1mrename from gh-pages-deploy.js[m
+[1mrename to scripts/gh-pages-deploy.js[m
+[1mdiff --git a/vue.config.js b/vue.config.js[m
+[1mindex 91b24c8..242fcf3 100644[m
+[1m--- a/vue.config.js[m
+[1m+++ b/vue.config.js[m
+[36m@@ -1,7 +1,7 @@[m
+ var merge = require('webpack-merge')[m
+ [m
+ module.exports = {[m
+[31m-    publicPath: 'medical-school',[m
+[32m+[m[32m    publicPath: '/medical-school/',[m
+     pwa: {[m
+         workboxOptions: {[m
+             skipWaiting: true[m
